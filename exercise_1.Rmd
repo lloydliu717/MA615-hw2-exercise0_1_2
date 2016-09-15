@@ -1,0 +1,40 @@
+---
+title: "exercise_1_vector"
+author: "Zichun Liu"
+date: "September 15, 2016"
+output: html_document
+---
+```{r}
+library(ggplot2)
+```
+
+### 1
+```{r}
+#creat the vectors
+c(1:20)
+
+c(20:1)
+?c
+
+c(1:20,19:1)
+
+tmp <- c(4,6,3)
+
+rep(tmp,10)
+?rep
+rep(tmp,10,length.out = 28)
+
+rep(tmp,10,len = 28)
+
+c(rep(4,10),rep(6,20),rep(3,30))
+rep(tmp,c(10,20,30))#hahahah!!
+```
+
+### 2
+```{r}
+x <- 0.1 * c(30:60)
+y <- exp(x)*cos(x)
+plot(y) + 
+```
+
+
