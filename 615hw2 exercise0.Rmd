@@ -1,0 +1,122 @@
+---
+title: "MA615 hw2"
+author: "Zichun Liu"
+date: "September 12, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Try some simple commands
+```{r}
+a <- 2
+b <- 50
+c <- 3
+a+b
+b/a
+b%%c
+sin(0)
+cos(0)
+sin45 <- sin(pi/4)
+4 * asin(sin45)
+e3 <- exp(3)
+log(e3)
+```
+##  Try some basic Vector operations
+```{r}
+# create
+a_vec <- c(3,50,5,6,10,40,20,2,100,30,25,80)
+length(a_vec)
+sum(a_vec)
+cumsum(a_vec)
+summary(a_vec)
+var(a_vec)
+str(a_vec)
+is.vector(a_vec)
+d <- a_vec[5]
+d
+a_vec
+length(d)
+is.vector(d)
+random_vector <- runif(20)
+length(random_vector)
+random_vector
+```
+
+```{r}
+#what if random_vector is really big?
+random_vec_big <- runif(10000)
+length(random_vec_big)
+
+head(random_vec_big)
+head(random_vec_big,20)
+```
+
+```{r}
+#too many decimals places?
+options(digits = 7)
+
+tail(random_vec_big)
+head(random_vec_big)
+
+
+round(head(random_vec_big),2)
+```
+
+
+```{r}
+#what if i want my random series to be repeatable?
+set.seed(2)
+r <- runif(10)
+set.seed(2)
+s <- runif(10)
+```
+```{r}
+plot(r)
+
+hist(r)
+
+hist(random_vec_big)
+
+boxplot(a_vec)
+```
+```{r}
+#matrix
+A <- matrix(floor(30 * runif(16)), nrow = 4)
+dim(A)
+#make a vector to multiply by A
+b <- floor(20 * runif(dim(A)[2]))##???why are we doing this.... 
+x <- solve(A,b)
+x
+solve(A)%*%b
+
+b1 <- A%*%x
+b1
+b
+b2 <- as.vector(b1)
+b3 <- t(b1)
+b3
+```
+```{r}
+#inner product dot(e,f) = e'f
+e <- floor(20*runif(4))
+f <- floor(20*runif(4))
+e
+f
+crossprod(e,f)
+sum(e*f)#notice the type
+t(e)%*%f
+```
+
+```{r}
+#outer product
+e%*%t(f)
+outer(e,f,"*")
+
+outer(e,f,">")
+#using automatic coersion
+outer(e,f,">")*1#interesting!!
+```
+
