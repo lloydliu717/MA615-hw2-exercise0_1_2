@@ -1,0 +1,156 @@
+---
+title: "exercise 2 matrix"
+author: "Zichun Liu"
+date: "September 16, 2016"
+output: html_document
+---
+###  1
+```{r}
+A <- matrix(c(1,5,-2,1,2,-1,3,6,-3),3,3)
+
+#a
+A%*%A%*%A
+
+#b
+A[,3] <- A[,2]+A[,3]
+```
+
+### 2
+```{r}
+B <- matrix(rep(c(10,-10,10),each = 15),15,3)
+crossprod(B,B)
+```
+
+### 3
+```{r}
+matE <- matrix(0, nrow = 6, ncol = 6)
+row(matE)
+col(matE)
+matE[abs(row(matE)-col(matE)) == 1] = 1
+matE
+```
+
+### 4
+```{r}
+A1 <- matrix(rep(c(0,1,2,3,4),5),5,5)
+A1+t(A1)
+
+outer(0:4,0:4,"+")#outer solution
+```
+
+### 5
+```{r}
+#a
+a <- 0:4
+i <- 1:5
+b <- a
+for (j in 1:4) {
+  b <- cbind(b, a[(i-1+j)%%5+1])
+}
+b
+
+#b
+a <- 0:9
+i <- 1:10
+b <- a
+for (j in 1:9) {
+  b <- cbind(b, a[(i-1+j)%%10+1])
+}
+b
+
+#c
+a <- 0:8
+i <- 1:9
+b <- a
+for (j in 1:8 ) {
+  b <- cbind(b, a[(i-1-j)%%9+1])
+}
+b
+```
+
+### 6
+```{r}
+a <- 1:5
+B <- matrix(0,5,5)
+m <- 5
+for (i in 1:m) {
+  for (j in 1:m) {
+    B[i,j] <- abs(i-j)+1
+  }
+} 
+B
+y <- c(7,-1,-3,5,17)
+x <- solve(B,y)
+x
+```
+
+### 7
+```{r}
+set.seed(75)
+aMat <- matrix( sample(10, size=60, replace=T), nr=6)
+
+#a
+tmp <- aMat[1,]
+count <- tmp[tmp>4]
+for (i in 2:6) {
+  tmp <- aMat[i,]
+  count <- c(count,tmp[tmp>4])
+}
+count
+
+#b
+tmp <- aMat[1,]
+count <- sum(tmp[tmp == 7])
+for (i in 2:6) {
+  tmp <- aMat[i,]
+  count <- c(count,sum(tmp[tmp == 7]))
+}
+count
+which(count == 14)
+
+#c
+sumcol <- colSums(aMat)
+C <- outer(sumcol,sumcol,"+")
+index <- order(C)[sort(C)>75]
+i <- 1:length(index)
+Index <- cbind(floor(1+index[i]/10),index[i]%%10)#repeating permitted
+Index
+
+C <- 1*(row(C)>col(C))*C
+index <- order(C)[sort(C)>75]
+i <- 1:length(index)
+Index <- cbind(floor(1+index[i]/10),index[i]%%10)#repeating not permitted
+Index
+```
+
+### 8
+```{r}
+#a
+a <- 0
+for (i in 1:20) {
+  for (j in 1:5) {
+    a <- a+ i^4/(j+3)
+  }
+}
+a
+
+#b
+b <- 0
+for (i in 1:20) {
+  for (j in 1:5) {
+    b <- b+ i^4/(i*j+3)
+  }
+}
+b
+
+#c
+c <- 0
+for (i in 1:10) {
+  for (j in 1:i) {
+    c <- c+ i^4/(i*j+3)
+  }
+}
+c
+```
+
+
