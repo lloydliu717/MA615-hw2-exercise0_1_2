@@ -6,6 +6,7 @@ output: html_document
 ---
 ```{r}
 library(ggplot2)
+options(digits = 5)
 ```
 
 ### 1
@@ -34,7 +35,121 @@ rep(tmp,c(10,20,30))#hahahah!!
 ```{r}
 x <- 0.1 * c(30:60)
 y <- exp(x)*cos(x)
-plot(y) + 
+plot(y)
 ```
+
+### 3
+```{r}
+#a
+a <- rep(c(.1,.2),12)
+b <- rep(3*c(1:12), each = 2)-rep(c(0,2),12)
+a^b
+
+#b
+a <- c(1:25)
+(2^a)/a
+```
+
+### 4
+```{r}
+#a
+tmp <- c(10:100)
+sum(tmp^3 + 4*tmp^2)
+
+#b
+i <- c(1:25)
+sum((2^i)/i + (3^i)/(i^2))
+```
+
+### 5
+```{r}
+#a
+?paste
+nth <- paste0(1:12, c("st", "nd", "rd", rep("th", 9)))
+paste("label", 1:30)
+
+#b
+paste0("fn",1:30)
+paste("fn", 1:30, sep = "")#both work
+```
+
+### 6
+```{r}
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
+
+#a
+i <- c(1:249)
+zVec <- yVec[i+1] - xVec[i]
+plot(zVec)
+
+#b
+zVec <- sin(yVec[i])/cos(xVec[i+1])
+plot(zVec)
+
+#c
+i <- c(1:248)
+zVec <- xVec[i]+2*xVec[i+1]-xVec[i+2]
+plot(zVec)
+
+#d
+i <- c(1:249)
+sum((exp(1)^-xVec[i+1])/(xVec[i]+10))
+
+```
+
+### 7
+```{r}
+#a
+yy <-sort(yVec)
+yy <- yy[142:250]
+
+yVec[(yVec)>600]#better approach
+
+hist(yVec )
+hist(yy,col = "darkred")
+hist(yVec[(yVec)>600])#same result
+
+#b
+order(yVec)[142:250]
+
+sort(yVec,index.return = TRUE)$ix[sort(yVec,index.return = TRUE)$x>600]#better approach
+
+order(yVec)[sort(yVec)>600]#better than better approach
+
+#c
+index <-order(yVec)[sort(yVec)>600]
+
+xc <- xVec[index]
+xc
+
+#d
+xbar <- mean(xVec)
+xd <- abs(xVec - xbar)^0.5
+xd
+plot(xVec,xd)
+
+#e
+sum(1*(yVec > max(yVec) -200))
+
+#f
+sum(xVec%%2)
+
+#g
+xVec[order(yVec)]
+plot(xVec[order(yVec)])
+
+#h
+i <- 1+3*c(0:83)
+yVec[i]
+```
+
+### 8
+```{r}
+i <- c(1:19)
+1 + sum(cumprod(2*i/(2*i+1)))
+```
+
 
 
