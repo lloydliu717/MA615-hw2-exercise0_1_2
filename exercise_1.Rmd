@@ -113,7 +113,7 @@ plot(yVec)
 t <- 1*(yVec >600)
 t[t== 0] <- NA
 points(yVec*t,col = "green")
-plot(yVec[(yVec)>600])
+points(yVec[(yVec)>600], col = "red")#this actually makes no sense
 
 hist(yy)
 hist(yVec[(yVec)>600])
