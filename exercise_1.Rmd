@@ -34,7 +34,7 @@ rep(tmp,c(10,20,30))#hahahah!!
 ### 2
 ```{r}
 x <- 0.1 * c(30:60)
-x <- seq(3:6,by = 0.1)
+x <- seq(3,6,by = 0.1)
 y <- exp(x)*cos(x)
 plot(y)
 ```
